@@ -5,7 +5,12 @@
 		},
 		{
 			"path": "microservices-hotel"
+		},
+		{
+			"path": "microservices-rating"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic"
+	}
 }

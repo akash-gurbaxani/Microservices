@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "microservices-rating"
+		},
+		{
+			"path": "microservices-ServerRegistry"
 		}
 	],
 	"settings": {

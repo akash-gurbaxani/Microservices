@@ -55,5 +55,14 @@ public class ratingControllers {
 		return new ResponseEntity<ratingDto>(ratingDto, HttpStatus.OK);
 
 	}
-
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<List<ratingDto>> getRatingsByUserId(@PathVariable String userId) {
+		List<ratingDto> ratings = this.ratingService.getRatingsByUserId(userId);
+		return new ResponseEntity<>(ratings, HttpStatus.OK);
+	}
+	@GetMapping("/hotel/{hotelId}")	
+	public ResponseEntity<List<ratingDto>> getRatingsByHotelId(@PathVariable String hotelId) {
+		List<ratingDto> ratings = this.ratingService.getRatingsByHotelId(hotelId);
+		return new ResponseEntity<>(ratings, HttpStatus.OK);
+	}
 }

@@ -15,6 +15,10 @@ public interface ratingService {
 	void deleteRating(String id);
 
 	ratingDto updateRating(String id, ratingDto dto);
+	
+	List<ratingDto> getRatingsByUserId(String userId);
+
+	List<ratingDto> getRatingsByHotelId(String hotelId);
     
 
 }

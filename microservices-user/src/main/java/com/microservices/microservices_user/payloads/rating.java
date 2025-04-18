@@ -1,20 +1,16 @@
-package com.microservices.microservices_rating.entities;
+package com.microservices.microservices_user.payloads;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
-@Entity
 public class rating {
 
-    @Id
     private String ratingId;
     private String feedback;
     private String rating;
     private String userId;
     private String hotelId;
-    
 
+    private Hotel hotel;
 
 }

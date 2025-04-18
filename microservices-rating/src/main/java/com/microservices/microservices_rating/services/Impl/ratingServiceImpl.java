@@ -66,4 +66,23 @@ public class ratingServiceImpl implements ratingService {
 		return this.modelMapper.map(saveRating, ratingDto.class);
 	}
 
+	@Override
+	public List<ratingDto> getRatingsByUserId(String userId) {
+		List<rating> ratingList = this.ratingRepo.findByUserId(userId)
+				.orElseThrow(() -> new RuntimeException("Rating not found with user id :" + userId));
+		List<ratingDto> ratingDtos = ratingList.stream().map(rating -> this.modelMapper.map(rating, ratingDto.class))
+				.collect(Collectors.toList());
+				return ratingDtos;
+	}
+
+	@Override
+	public List<ratingDto> getRatingsByHotelId(String hotelId) {
+	List<rating> ratings = this.ratingRepo.findByHotelId(hotelId)
+		.orElseThrow(() -> new RuntimeException("Rating not found with hotel id :" + hotelId));	
+	
+	List<ratingDto> ratingDtos = ratings.stream().map(rating -> this.modelMapper.map(rating, ratingDto.class))
+		.collect(Collectors.toList());
+	return ratingDtos;
+	}
+
 }

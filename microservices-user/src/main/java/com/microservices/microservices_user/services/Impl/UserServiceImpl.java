@@ -46,14 +46,17 @@ public class UserServiceImpl implements UserService {
         User user = this.userRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("User not found with id = " + id));
         
         ////localhost:9093/api/rating/user/6147c95f-f74a-46e6-b1a3-ddfd70c6ea1e
-        rating[] ratings = restTemplate.getForObject("http://localhost:9093/api/rating/user/"+id, rating[].class);
-        
+       // rating[] ratings = restTemplate.getForObject("http://localhost:9093/api/rating/user/"+id, rating[].class);
+        rating[] ratings = restTemplate.getForObject("http://MICROSERVICES-RATING/api/rating/user/"+id, rating[].class);
+       
         List<rating> rating = Arrays.asList(ratings);
         rating.stream().map(r->{
             
             //localhost:9092/api/hotel/0613bd68-a7f8-44c5-8efa-8d6c0ef7fff
-           Hotel hotel = restTemplate.getForObject("http://localhost:9092/api/hotel/"+r.getHotelId(), Hotel.class);
-            r.setHotel(hotel);
+          // Hotel hotel = restTemplate.getForObject("http://localhost:9092/api/hotel/"+r.getHotelId(), Hotel.class);
+           
+           Hotel hotel = restTemplate.getForObject("http://MICROSERVICES-HOTEL/api/hotel/"+r.getHotelId(), Hotel.class);
+           r.setHotel(hotel);
             return r;
 
         }).collect(Collectors.toList());
@@ -73,13 +76,18 @@ public class UserServiceImpl implements UserService {
     for (User user : users) {
         UserDto userDto = this.modelMapper.map(user, UserDto.class);
        
-        rating[] ratings = this.restTemplate.getForObject("http://localhost:9093/api/rating/user/"+user.getId(), rating[].class);
+      //  rating[] ratings = this.restTemplate.getForObject("http://localhost:9093/api/rating/user/"+user.getId(), rating[].class);
+        rating[] ratings = this.restTemplate.getForObject("http://MICROSERVICES-RATING/api/rating/user/"+user.getId(), rating[].class);
+      
         List<rating> rating = Arrays.asList(ratings);
 
         rating.stream().map(r->{
             
             //localhost:9092/api/hotel/0613bd68-a7f8-44c5-8efa-8d6c0ef7fff
-           Hotel hotel = restTemplate.getForObject("http://localhost:9092/api/hotel/"+r.getHotelId(), Hotel.class);
+          
+           // Hotel hotel = restTemplate.getForObject("http://localhost:9092/api/hotel/"+r.getHotelId(), Hotel.class);
+            Hotel hotel = restTemplate.getForObject("http://MICROSERVICES-HOTEL/api/hotel/"+r.getHotelId(), Hotel.class);
+          
             r.setHotel(hotel);
             return r;
 

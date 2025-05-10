@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "microservices-ServerRegistry"
+		},
+		{
+			"path": "ApiGateway"
 		}
 	],
 	"settings": {
